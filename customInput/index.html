@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div id="root">
+        <!-- Examples of two different ways to create an input -->
+        <!-- <input type="text" v-model="coupon" /> -->
+        <!-- Equivalent -->
+        <!-- <input type="text" :value="coupon" @input="coupon = $event.target.value" /> -->
+
+        <!-- Creating a custom component instead -->
+        <coupon-box v-model="coupon"></coupon-box>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src='main.js'></script>
+
+</html>

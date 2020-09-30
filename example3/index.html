@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <style>
+      body {
+        padding: 2em;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <div id="root" class="container">
+
+      <message></message>
+
+      <message-with-props title="Hello World 3" body="Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi"></message-with-props>
+
+      <message-with-props title="Hello Universe"
+        body="Again Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi"></message-with-props>
+
+      <article class="message">
+        <div class="message-header">
+          <p>Original Hello World</p>
+          <button type="button" class="delete" aria-label="delete"></button>
+        </div>
+        <div class="message-body">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis
+          placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum
+          <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et
+          sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem
+          eget, facilisis sodales sem.
+        </div>
+      </article>
+
+      <button type="button" @click="showModal = true">Show Modal</button>
+      <modal v-if="showModal" @close="showModal = false">
+        Sample modal content Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, sit, harum odit praesentium at
+        voluptates fuga officiis aspernatur dolorem iste debitis rerum nesciunt sapiente accusamus amet doloremque? Doloribus,
+        eum. Suscipit?
+      </modal>
+
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src='main.js'></script>
+
+</html>

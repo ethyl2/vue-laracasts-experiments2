@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    .new-style {
+      background: blue;
+      color: white;
+    }
+    .newer-style {
+      background: cyan;
+    }
+  </style>
+
+</head>
+<body>
+  <div id='root'>
+    <h1 v-text="new Date()"></h1>
+    <p v-text="reversedMessage"></p>
+    <input type='text' id='input' v-model="message"/>
+    <p :class="pStyle">{{ message }}</p>
+    <ul>
+      <li v-for="name in names">{{ name }}</li>
+    </ul>
+
+    <input type='text' id='newName' v-model='newName' />
+    <button :disabled="buttonIsDisabled" :class="{'new-style': showColor }" @click="addName" :title="buttonTitle">Add Name</button>
+    <button @click="toggleClass">Toggle Color</button>
+    <ul>
+      <li v-for="name in names" v-text="name"></li>
+    </ul>
+
+    <h2>All Tasks</h2>
+    <ol>
+      <div v-for="task in tasks">
+
+        <li ><button @click="toggleDone(task.description)">✏️</button> {{ task.description }} {{ task.completed ? '✔️': '🕳️' }}</li>
+      </div>
+    </ol>
+
+    <h2>Completed Tasks</h2>
+    <ol>
+      <li v-for="task in tasks" v-if="task.completed">{{ task.description }} {{ task.completed ? '✔️': '🕳️' }}</li>
+    </ol>
+
+    <h2>Unfinished Tasks</h2>
+    <ol>
+      <li v-for="task in unfinishedTasks">{{ task.description }} {{ task.completed ? '✔️': '🕳️' }}</li>
+    </ol>
+
+
+  </div>
+</body>
+<script>
+
+  new Vue({
+    data: {
+      message: 'Hello World',
+      newName: '',
+      pStyle: 'newer-style',
+      showColor: true,
+      buttonIsDisabled: false,
+      buttonTitle: 'click to add name',
+      names: ['Cory', 'Cam', 'Justin', 'Camielle', 'Heather', 'Braden'],
+      tasks: [
+        { description: 'Go shopping', completed: false },
+        { description: 'Drink water', completed: true }
+      ]
+    },
+    computed: {
+      reversedMessage () {
+        return this.message.split('').reverse().join('');
+      },
+      unfinishedTasks () {
+        return this.tasks.filter(task => !task.completed);
+      }
+    },
+    methods: {
+      addName(){
+        this.names = [...this.names, this.newName];
+        this.newName = '';
+      },
+      toggleClass() {
+        this.showColor = !this.showColor;
+        if (this.pStyle === 'newer-style') {
+          this.pStyle = 'new-style';
+        } else {
+          this.pStyle = 'newer-style';
+        }
+      },
+      toggleDone(item) {
+        updatedTasks = this.tasks.map(task => {
+          if (task.description === item) {
+            task.completed = !task.completed;
+          }
+          return task;
+        });
+        this.tasks = updatedTasks;
+
+      }
+
+    },
+    /*
+    mounted() {
+      alert('ready');
+    },
+    */
+    el: '#root'
+  })
+
+
+</script>
+</html>
